@@ -1,8 +1,12 @@
 require('dotenv').config()
 require('express-async-errors')
 
+// express
 const express = require('express')
 const app = express()
+
+// utility packages
+const morgan = require('morgan')
 
 // security packages
 const helmet = require('helmet')
@@ -14,7 +18,7 @@ const rateLimiter = require('express-rate-limit')
 const connectDB = require('./db/connection')
 
 // routers
-
+const authRouter = require('./routes/authRoutes')
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
@@ -31,13 +35,14 @@ app.use(helmet())
 app.use(xss())
 app.use(cors())
 
+app.use(morgan('tiny'))
 app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
-
+app.use('/api/v1/auth', authRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleWare)
