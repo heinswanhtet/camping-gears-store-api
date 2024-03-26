@@ -7,6 +7,7 @@ const app = express()
 
 // utility packages
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
 
 // security packages
 const helmet = require('helmet')
@@ -37,6 +38,7 @@ app.use(cors())
 
 app.use(morgan('tiny'))
 app.use(express.json())
+app.use(cookieParser(process.env.JWT_SECRET))
 
 app.get('/', (req, res) => {
     res.send('Hello World')
