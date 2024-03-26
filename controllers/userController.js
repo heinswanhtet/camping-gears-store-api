@@ -1,5 +1,10 @@
+const User = require('../models/User')
+const { StatusCodes } = require('http-status-codes')
+const CustomError = require('../errors')
+
 const getAllUsers = async (req, res) => {
-    res.send('get all users')
+    const users = await User.find({ role: 'user' }).select('-password')
+    res.status(StatusCodes.OK).json({ users })
 }
 
 const getSingleUser = async (req, res) => {
