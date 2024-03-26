@@ -42,6 +42,7 @@ app.use(express.json())
 app.use(cookieParser(process.env.JWT_SECRET))
 
 app.get('/', (req, res) => {
+    // console.log(req.signedCookies)
     res.send('Hello World')
 })
 
