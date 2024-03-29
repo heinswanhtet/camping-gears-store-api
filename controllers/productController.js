@@ -8,7 +8,8 @@ const createProduct = async (req, res) => {
 }
 
 const getAllProducts = async (req, res) => {
-    res.send('get all products')
+    const products = await Product.find({}).populate({ path: 'user', select: 'name email' })
+    res.status(StatusCodes.OK).json({ products })
 }
 
 const getSingleProduct = async (req, res) => {
