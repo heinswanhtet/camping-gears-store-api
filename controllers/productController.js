@@ -1,6 +1,8 @@
 const Product = require('../models/Product')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
+const cloudinary = require('cloudinary').v2
+const { unlink } = require('fs').promises
 
 const createProduct = async (req, res) => {
     req.body.user = req.user.userId
@@ -58,7 +60,16 @@ const deleteProduct = async (req, res) => {
 }
 
 const uploadImage = async (req, res) => {
-    res.send('upload image')
+    const productImage = req.files.image
+    const result = await cloudinary.uploader.upload(
+        productImage.tempFilePath,
+        {
+            use_filename: true,
+            folder: 'camping-gears-store-api'
+        }
+    )
+    await unlink(productImage.tempFilePath)
+    res.status(StatusCodes.OK).json({ image: { src: result.secure_url } })
 }
 
 module.exports = {
