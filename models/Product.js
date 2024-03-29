@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Review = require('./Review');
 
 const ProductSchema = new mongoose.Schema(
     {
@@ -73,11 +74,18 @@ const ProductSchema = new mongoose.Schema(
     { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 )
 
+ProductSchema.pre('deleteOne', async function () {
+    const { _conditions: { _id: productId } } = this
+    await Review.deleteMany({ product: productId })
+});
+
 ProductSchema.virtual('reviews', {
     ref: 'Review',
     localField: '_id',
     foreignField: 'product',
     justOne: false
 })
+
+
 
 module.exports = mongoose.model('Product', ProductSchema)
