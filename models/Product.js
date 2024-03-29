@@ -26,7 +26,7 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Please provide product category'],
             enum: {
-                values: [],
+                values: ['tents', 'gear', 'sleeping', 'glamping', 'furniture'],
                 message: '{VALUE} is not supported'
             }
         },
@@ -34,7 +34,7 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Please provide product company'],
             enum: {
-                values: [],
+                values: ['naturehike', 'nemo', 'marmot', 'msr'],
                 message: '{VALUE} is not supported'
             }
         },
