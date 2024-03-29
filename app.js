@@ -14,6 +14,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const xss = require('xss-clean')
 const rateLimiter = require('express-rate-limit')
+const mongoSanitize = require('express-mongo-sanitize');
 
 // file uploads
 const fileUpload = require('express-fileupload')
@@ -48,6 +49,7 @@ app.use(
 app.use(helmet())
 app.use(xss())
 app.use(cors())
+app.use(mongoSanitize());
 
 app.use(morgan('tiny'))
 app.use(express.json())
