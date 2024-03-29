@@ -6,8 +6,6 @@ const createProduct = async (req, res) => {
     req.body.user = req.user.userId
     // checking image property whether or not it is null or empty if it is in body
     // assign as undefined to trigger default value in mongo db if it is null or empty
-    // if (req.body.image)
-    //     req.body.image = undefined
     req.body.image = req.body.image || undefined
     const product = await Product.create(req.body)
     res.status(StatusCodes.CREATED).json({ product })
@@ -15,7 +13,7 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     const products = await Product.find({}).populate({ path: 'user', select: 'name email' })
-    res.status(StatusCodes.OK).json({ products })
+    res.status(StatusCodes.OK).json({ total: products.length, products })
 }
 
 const getSingleProduct = async (req, res) => {
