@@ -4,6 +4,11 @@ const CustomError = require('../errors')
 
 const createProduct = async (req, res) => {
     req.body.user = req.user.userId
+    // checking image property whether or not it is null or empty if it is in body
+    // assign as undefined to trigger default value in mongo db if it is null or empty
+    // if (req.body.image)
+    //     req.body.image = undefined
+    req.body.image = req.body.image || undefined
     const product = await Product.create(req.body)
     res.status(StatusCodes.CREATED).json({ product })
 }
