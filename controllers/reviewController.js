@@ -34,7 +34,18 @@ const getAllReviews = async (req, res) => {
 }
 
 const getSingleReview = async (req, res) => {
-    res.send('get single review')
+    const { id: reviewId } = req.params
+
+    const review = await Review.findOne({ _id: reviewId }).populate(
+        [
+            { path: 'user', select: 'name email role' },
+            { path: 'product', select: 'name price category company' }
+        ]
+    )
+    if (!review)
+        throw new CustomError.NotFoundError(`No review with id: ${reviewId}`)
+
+    res.status(StatusCodes.OK).json({ review })
 }
 
 const updateReview = async (req, res) => {
