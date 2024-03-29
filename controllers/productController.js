@@ -1,5 +1,6 @@
 const Product = require('../models/Product')
 const { StatusCodes } = require('http-status-codes')
+const CustomError = require('../errors')
 
 const createProduct = async (req, res) => {
     req.body.user = req.user.userId
@@ -13,7 +14,13 @@ const getAllProducts = async (req, res) => {
 }
 
 const getSingleProduct = async (req, res) => {
-    res.send('get single product')
+    const { id: productId } = req.params
+
+    const product = await Product.findOne({ _id: productId }).populate({ path: 'user', select: 'name email' })
+    if (!product)
+        throw new CustomError.NotFoundError(`No product with id: ${productId}`)
+
+    res.status(StatusCodes.OK).json({ product })
 }
 
 const updateProduct = async (req, res) => {
