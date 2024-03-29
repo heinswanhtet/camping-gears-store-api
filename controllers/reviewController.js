@@ -24,7 +24,13 @@ const createReview = async (req, res) => {
 }
 
 const getAllReviews = async (req, res) => {
-    res.send('get all reviews')
+    const reviews = await Review.find({}).populate(
+        [
+            { path: 'user', select: 'name email role' },
+            { path: 'product', select: 'name price category company' }
+        ]
+    )
+    res.status(StatusCodes.OK).json({ reviews })
 }
 
 const getSingleReview = async (req, res) => {
