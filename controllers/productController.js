@@ -65,12 +65,16 @@ const uploadImage = async (req, res) => {
 
     const productImage = req.files.image
 
-    if (!productImage.mimetype.startsWith('image'))
+    if (!productImage.mimetype.startsWith('image')) {
+        await unlink(productImage.tempFilePath)
         throw new CustomError.BadRequestError('Please upload image file!')
+    }
 
     const max_size = eval(process.env.IMAGE_MAX_SIZE)
-    if (productImage.size > max_size)
+    if (productImage.size > max_size) {
+        await unlink(productImage.tempFilePath)
         throw new CustomError.BadRequestError(`Please upload image smaller than ${max_size / (1024 * 1024)}MB`)
+    }
 
     const result = await cloudinary.uploader.upload(
         productImage.tempFilePath,
