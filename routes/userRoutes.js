@@ -8,7 +8,6 @@ const {
     updateUser,
     updateUserPassword
 } = require('../controllers/userController')
-const { route } = require('express/lib/router')
 const { authenticateUser, authorizePermissions } = require('../middleware/authentication')
 
 router.route('/').get(authenticateUser, authorizePermissions('admin'), getAllUsers)
