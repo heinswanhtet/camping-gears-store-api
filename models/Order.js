@@ -26,21 +26,21 @@ const SingleOrderItemSchema = mongoose.Schema({
 
 const OrderSchema = new mongoose.Schema(
     {
-        tax: {
-            type: Number,
-            required: true
-        },
-        shippingFee: {
-            type: Number,
-            required: true
-        },
-        subtotal: {
-            type: Number,
-            required: true
-        },
+        // tax: {
+        //     type: Number,
+        //     required: true
+        // },
+        // shippingFee: {
+        //     type: Number,
+        //     required: true
+        // },
+        // subtotal: {
+        //     type: Number,
+        //     required: true
+        // },
         total: {
             type: Number,
-            required: true
+            // required: true
         },
         orderItems: [SingleOrderItemSchema],
         status: {
@@ -53,12 +53,15 @@ const OrderSchema = new mongoose.Schema(
             ref: 'User',
             required: true
         },
-        clientSecret: {
+        checkoutSessionId: {
             type: String,
-            required: true
         },
         paymentIntentId: {
             type: String,
+        },
+        clientSecret: {
+            type: String,
+            // required: true
         }
     },
     { timestamps: true }

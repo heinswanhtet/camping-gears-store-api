@@ -34,6 +34,7 @@ const userRouter = require('./routes/userRoutes')
 const productRouter = require('./routes/productRoutes')
 const reviewRouter = require('./routes/reviewRoutes')
 const orderRouter = require('./routes/orderRoutes')
+const stripeRouter = require('./routes/stripeRoutes')
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
@@ -50,6 +51,9 @@ app.use(helmet())
 app.use(xss())
 app.use(cors())
 app.use(mongoSanitize());
+
+// stripe route
+app.use('/stripe', stripeRouter)
 
 // app.use(morgan('tiny'))
 app.use(express.json())

@@ -3,22 +3,97 @@ const Product = require('../models/Product')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
 const { checkPermissions } = require('../utils')
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 
-const StripeAPI = async ({ amount, currency }) => {
-    const clientSecret = 'someRandomValue';
-    return { clientSecret, amount };
+const stripePayment = async ({ orderId, orderItems, currency }) => {
+    const session = await stripe.checkout.sessions.create({
+        // shipping_address_collection: {
+        //     allowed_countries: ['US', 'CA'],
+        // },
+        // shipping_options: [
+        //     {
+        //         shipping_rate_data: {
+        //             type: 'fixed_amount',
+        //             fixed_amount: {
+        //                 amount: 0,
+        //                 currency: 'usd',
+        //             },
+        //             display_name: 'Free shipping',
+        //             delivery_estimate: {
+        //                 minimum: {
+        //                     unit: 'business_day',
+        //                     value: 5,
+        //                 },
+        //                 maximum: {
+        //                     unit: 'business_day',
+        //                     value: 7,
+        //                 },
+        //             },
+        //         },
+        //     },
+        //     {
+        //         shipping_rate_data: {
+        //             type: 'fixed_amount',
+        //             fixed_amount: {
+        //                 amount: 1500,
+        //                 currency: 'usd',
+        //             },
+        //             display_name: 'Next day air',
+        //             delivery_estimate: {
+        //                 minimum: {
+        //                     unit: 'business_day',
+        //                     value: 1,
+        //                 },
+        //                 maximum: {
+        //                     unit: 'business_day',
+        //                     value: 1,
+        //                 },
+        //             },
+        //         },
+        //     },
+        // ],
+        line_items: orderItems.map(item => {
+            return {
+                price_data: {
+                    currency: currency,
+                    product_data: {
+                        name: item.name,
+                        images: [item.image],
+                        metadata: {
+                            productId: item.product.toString(),
+                        }
+                    },
+                    unit_amount: item.price
+                },
+                quantity: item.amount
+            }
+        }),
+        payment_intent_data: {
+            metadata: {
+                orderId: orderId.toString()
+            },
+        },
+        automatic_tax: {
+            enabled: true,
+        },
+        metadata: {
+            orderId: orderId.toString()
+        },
+        mode: 'payment',
+        success_url: `${process.env.DOMAIN}/stripe/success`,
+        cancel_url: `${process.env.DOMAIN}/stripe/cancel`
+    })
+
+    return session
 }
 
 const createOrder = async (req, res) => {
-    const { tax, shippingFee, items: cartItems } = req.body
+    const { items: cartItems } = req.body
 
     if (!cartItems || cartItems.length < 1)
         throw new CustomError.BadRequestError('No cart items provided! Please provide them')
-    if (!tax || !shippingFee)
-        throw new CustomError.BadRequestError('Please provide tax and shipping fee values')
 
     let orderItems = []
-    let subtotal = 0
 
     for (const item of cartItems) {
         const product = await Product.findOne({ _id: item.product })
@@ -35,27 +110,23 @@ const createOrder = async (req, res) => {
         }
 
         orderItems = [...orderItems, singleOrderItem]
-        subtotal += item.amount * price
     }
 
-    const total = subtotal + shippingFee + tax
+    const order = await Order.create({
+        orderItems,
+        user: req.user.userId,
+    })
 
-    const paymentIntent = await StripeAPI({
-        amount: total,
+    const session = await stripePayment({
+        orderId: order._id,
+        orderItems,
         currency: 'usd'
     })
 
-    const order = await Order.create({
-        tax,
-        shippingFee,
-        subtotal,
-        total,
-        orderItems,
-        user: req.user.userId,
-        clientSecret: paymentIntent.clientSecret
-    })
+    order.checkoutSessionId = session.id
+    await order.save()
 
-    res.status(StatusCodes.CREATED).json({ clientSecret: order.clientSecret, order })
+    res.status(StatusCodes.SEE_OTHER).json({ redirect_link: session.url, session })
 }
 
 const getAllOrders = async (req, res) => {
