@@ -6,7 +6,7 @@ const {
     getAllOrders,
     getSingleOrder,
     getCurrentUserOrders,
-    updateOrder
+    cancelOrder
 } = require('../controllers/orderController')
 const { authenticateUser, authorizePermissions } = require('../middleware/authentication')
 
@@ -18,6 +18,8 @@ router.route('/show-all-my-orders').get(authenticateUser, getCurrentUserOrders)
 
 router.route('/:id')
     .get(authenticateUser, getSingleOrder)
-    .patch(authenticateUser, updateOrder)
+
+router.route('/cancel/:id')
+    .patch(authenticateUser, cancelOrder)
 
 module.exports = router

@@ -151,12 +151,12 @@ const getCurrentUserOrders = async (req, res) => {
     res.status(StatusCodes.OK).json({ total: orders.length, orders })
 }
 
-const updateOrder = async (req, res) => {
+const cancelOrder = async (req, res) => {
     const { id: orderId } = req.params
-    const { paymentIntentId } = req.body
+    // const { paymentIntentId } = req.body
 
-    if (!paymentIntentId)
-        throw new CustomError.BadRequestError('Please provide payment intent id')
+    // if (!paymentIntentId)
+    //     throw new CustomError.BadRequestError('Please provide payment intent id')
 
     const order = await Order.findOne({ _id: orderId })
     if (!orderId)
@@ -164,8 +164,8 @@ const updateOrder = async (req, res) => {
 
     checkPermissions({ requestUser: req.user, resourceUserId: order.user })
 
-    order.paymentIntentId = paymentIntentId
-    order.status = 'paid'
+    // order.paymentIntentId = paymentIntentId
+    order.status = 'canceled'
     await order.save()
 
     res.status(StatusCodes.OK).json({ order })
@@ -176,5 +176,5 @@ module.exports = {
     getAllOrders,
     getSingleOrder,
     getCurrentUserOrders,
-    updateOrder
+    cancelOrder
 }
