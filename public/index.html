@@ -8442,7 +8442,7 @@
                             <li><a class=endpoint_menu href=#jump-Order-GetAllOrders>Get All Orders</a>
                             <li><a class=endpoint_menu href=#jump-Order-GetSingleOrder>Get Single Order</a>
                             <li><a class=endpoint_menu href=#jump-Order-GetCurrentUserOrder>Get Current User Order</a>
-                            <li><a class=endpoint_menu href=#jump-Order-UpdateOrder>Update Order</a>
+                            <li><a class=endpoint_menu href=#jump-Order-CancelOrder>Cancel Order</a>
                         </ul>
                 </ul>
             </div>
@@ -8473,8 +8473,8 @@
                                     <div id=collapse-Auth-RegisterUser class="panel-collapse collapse">
                                         <div class=panel-body>
                                             <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-                                                &#34;name&#34;: &#34;zoro&#34;,
-                                                &#34;email&#34;: &#34;zoro@gmail.com&#34;,
+                                                &#34;name&#34;: &#34;luffy&#34;,
+                                                &#34;email&#34;: &#34;luffy@gmail.com&#34;,
                                                 &#34;password&#34;: &#34;secret&#34;
                                                 }</span>
                                             <div class=clearfix></div>
@@ -8559,7 +8559,7 @@
                                                     User</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users/1234
+                                                https://camping-gears-store-api.onrender.com/api/v1/users/6602e0691ec468a2721f5a79
                                             </h4>
                                         </a></div>
                                     <div id=collapse-User-GetSingleUser class="panel-collapse collapse">
@@ -8692,7 +8692,7 @@
                                                 &#34;name&#34;: &#34;gas stove&#34;,
                                                 &#34;price&#34;: 109999,
                                                 &#34;image&#34;:
-                                                &#34;https://res.cloudinary.com/dyhaskbcd/image/upload/v1711684612/camping-gears-store-api/tmp-2-1711684607779_gqch9q.jpg&#34;,
+                                                &#34;https://res.cloudinary.com/dyhaskbcd/image/upload/v1711687020/camping-gears-store-api/tmp-1-1711687015138_wyhgjx.jpg&#34;,
                                                 &#34;colors&#34;: [&#34;#000&#34;, &#34;#ffb900&#34;],
                                                 &#34;company&#34;: &#34;msr&#34;,
                                                 &#34;description&#34;: &#34;Cloud bread VHS hell of banjo bicycle rights
@@ -8732,7 +8732,7 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062c07b48fe9ce2731c67f
+                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-GetSingleProduct class="panel-collapse collapse">
@@ -8748,7 +8748,7 @@
                                                     Reviews</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66067479f8139319cb0f9497/reviews
+                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683/reviews
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-GetSingleProductReviews class="panel-collapse collapse">
@@ -8764,13 +8764,15 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062c07b48fe9ce2731c67f
+                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683
                                             </h4>
                                         </a>
                                     </div>
                                     <div id=collapse-Product-UpdateProduct class="panel-collapse collapse">
                                         <div class=panel-body>
                                             <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+                                                &#34;image&#34;:
+                                                &#34;https://res.cloudinary.com/dyhaskbcd/image/upload/v1711684612/camping-gears-store-api/tmp-2-1711684607779_gqch9q.jpg&#34;
                                                 }</span>
                                             <div class=clearfix></div>
                                         </div>
@@ -8856,7 +8858,7 @@
                                                     Review</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews/660650881d38be740d482980
+                                                https://camping-gears-store-api.onrender.com/api/v1/reviews/66067e51747dcbe71e9b7a3a
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Review-GetSingleReview class="panel-collapse collapse">
@@ -8918,8 +8920,8 @@
                         <div class=request-item>
                             <div class=panel-group id=accordion-Order>
                                 <div class="panel panel-success" id=jump-Order-CreateOrder>
-                                    <div class=panel-heading><small class="pull-right text-muted"></small><a
-                                            class=text-success data-toggle=collapse data-parent=#accordion-Order
+                                    <div class=panel-heading><small class="pull-right text-muted">raw</small>
+                                        <a class=text-success data-toggle=collapse data-parent=#accordion-Order
                                             href=#collapse-Order-CreateOrder>
                                             <h4 class=panel-title><span
                                                     class="glyphicon glyphicon-plus"></span><strong>Create
@@ -8928,9 +8930,24 @@
                                                 &nbsp;
                                                 https://camping-gears-store-api.onrender.com/api/v1/orders
                                             </h4>
-                                        </a></div>
+                                        </a>
+                                    </div>
                                     <div id=collapse-Order-CreateOrder class="panel-collapse collapse">
-                                        <div class=panel-body></div>
+                                        <div class=panel-body>
+                                            <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+                                                &#34;items&#34;: [
+                                                {
+                                                &#34;amount&#34;: 10,
+                                                &#34;product&#34;: &#34;66062cccb48fe9ce2731c683&#34;
+                                                },
+                                                {
+                                                &#34;amount&#34;: 5,
+                                                &#34;product&#34;: &#34;66079a37022ebf10ff57e508&#34;
+                                                }
+                                                ]
+                                                }</span>
+                                            <div class=clearfix></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="panel panel-info" id=jump-Order-GetAllOrders>
@@ -8958,7 +8975,7 @@
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders/123
+                                                https://camping-gears-store-api.onrender.com/api/v1/orders/6607d1a23d1fd3336cb032c4
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Order-GetSingleOrder class="panel-collapse collapse">
@@ -8981,19 +8998,20 @@
                                         <div class=panel-body></div>
                                     </div>
                                 </div>
-                                <div class="panel panel-warning" id=jump-Order-UpdateOrder>
-                                    <div class=panel-heading><small class="pull-right text-muted"></small><a
-                                            class=text-warning data-toggle=collapse data-parent=#accordion-Order
-                                            href=#collapse-Order-UpdateOrder>
+                                <div class="panel panel-warning" id=jump-Order-CancelOrder>
+                                    <div class=panel-heading><small class="pull-right text-muted">raw</small>
+                                        <a class=text-warning data-toggle=collapse data-parent=#accordion-Order
+                                            href=#collapse-Order-CancelOrder>
                                             <h4 class=panel-title><span
-                                                    class="glyphicon glyphicon-plus"></span><strong>Update
+                                                    class="glyphicon glyphicon-plus"></span><strong>Cancel
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders/123
+                                                https://camping-gears-store-api.onrender.com/api/v1/orders/cancel/6608f6822384c8ce6288cae1
                                             </h4>
-                                        </a></div>
-                                    <div id=collapse-Order-UpdateOrder class="panel-collapse collapse">
+                                        </a>
+                                    </div>
+                                    <div id=collapse-Order-CancelOrder class="panel-collapse collapse">
                                         <div class=panel-body></div>
                                     </div>
                                 </div>
@@ -9009,7 +9027,7 @@
         <div class=container-fluid>
             <div class="span12 text-center"><span data-toggle=tooltip
                     title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated
-                    at 2024-03-29 16:45:14 by <a href=https://github.com/thedevsaddam/docgen target=_blank
+                    at 2024-03-31 13:03:31 by <a href=https://github.com/thedevsaddam/docgen target=_blank
                         class=text-muted>docgen</a></span></div>
         </div>
     </footer>
