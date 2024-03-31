@@ -126,7 +126,7 @@ const createOrder = async (req, res) => {
     order.checkoutSessionId = session.id
     await order.save()
 
-    res.status(StatusCodes.SEE_OTHER).json({ redirect_link: session.url, session })
+    res.status(StatusCodes.SEE_OTHER).json({ redirect_link: session.url, order })
 }
 
 const getAllOrders = async (req, res) => {

@@ -1,7 +1,14 @@
 const stripe = require('stripe')(process.env.STRIPE_KEY)
 const endpointSecret = process.env.WEBHOOK_SECRET
 const Order = require('../models/Order')
+const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
+
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+const DOMAIN = process.env.MAILGUN_DOMAIN
 
 const success = async (req, res) => {
     res.send('success payment')
@@ -9,6 +16,31 @@ const success = async (req, res) => {
 
 const cancel = async (req, res) => {
     res.send('cancelled payment')
+}
+
+const sendEmail = async ({ order, userId }) => {
+    const user = await User.findOne({ _id: userId })
+
+    let orderDetails = ''
+    order.orderItems.forEach(item => {
+        orderDetails += `${item.name} x ${item.amount} => $${(item.price / 100).toLocaleString()} <br>`
+    })
+
+    const emailDetails = {
+        from: 'Yuru-Camp 🏕️ <camping-gears-store@mail.com>',
+        to: [user.email],
+        subject: 'Billing Info',
+        text: 'Here are the things you have bought:',
+        html: `
+            <p>
+                ${orderDetails} <br>
+                <b>Total</b>: $${(order.total / 100).toLocaleString()}
+            </p>
+        `
+    }
+
+    const info = await mg.messages.create(DOMAIN, emailDetails)
+    console.log(info)
 }
 
 const webhook = async (req, res) => {
@@ -33,8 +65,8 @@ const webhook = async (req, res) => {
     // Handle the event
     switch (event.type) {
         case 'checkout.session.completed':
-            const checkoutSession = event.data.object
-            console.log(`Checkout Session Id: ${checkoutSession.id}`)
+            // const checkoutSession = event.data.object
+            // console.log(`Checkout Session Id: ${checkoutSession.id}`)
             break
 
         case 'payment_intent.succeeded':
@@ -49,10 +81,12 @@ const webhook = async (req, res) => {
             await order.save()
 
             console.log(`Success Payment! Payment Intent Id: ${paymentIntent.id}`)
+            await sendEmail({ order, userId: order.user })
+            console.log('Sent Email')
             break
 
         default:
-            console.log(`Unhandled event type: ${event.type}`)
+        // console.log(`Unhandled event type: ${event.type}`)
     }
 
     res.status(StatusCodes.OK).send()
