@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
 const { createTokenUser, attachCookiesToResponse, sendVerificationEmail } = require('../utils')
 const crypto = require('crypto')
+const Token = require('../models/Token')
 
 const register = async (req, res) => {
     const { name, email, password } = req.body
@@ -64,7 +65,18 @@ const login = async (req, res) => {
         throw new CustomError.UnauthenticatedError('Please verify your email')
 
     const tokenUser = createTokenUser(user)
-    attachCookiesToResponse({ res, user: tokenUser })
+
+    let refreshToken = ''
+
+
+    refreshToken = crypto.randomBytes(40).toString('hex')
+    const ip = req.ip
+    const userAgent = req.headers['user-agent']
+    const userToken = { refreshToken, ip, userAgent, user: user._id }
+
+    await Token.create(userToken)
+
+    attachCookiesToResponse({ res, user: tokenUser, refreshToken })
 
     res.status(StatusCodes.OK).json({ user: tokenUser })
 
