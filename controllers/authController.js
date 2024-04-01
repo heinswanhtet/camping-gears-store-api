@@ -67,19 +67,25 @@ const login = async (req, res) => {
     const tokenUser = createTokenUser(user)
 
     let refreshToken = ''
+    const existingToken = await Token.findOne({ user: user._id })
 
-
-    refreshToken = crypto.randomBytes(40).toString('hex')
-    const ip = req.ip
-    const userAgent = req.headers['user-agent']
-    const userToken = { refreshToken, ip, userAgent, user: user._id }
-
-    await Token.create(userToken)
+    if (existingToken) {
+        const { isValid } = existingToken
+        if (!isValid)
+            throw new CustomError.UnauthenticatedError('Invalid Credentials')
+        refreshToken = existingToken.refreshToken
+    }
+    else {
+        refreshToken = crypto.randomBytes(40).toString('hex')
+        const ip = req.ip
+        const userAgent = req.headers['user-agent']
+        const userToken = { refreshToken, ip, userAgent, user: user._id }
+        await Token.create(userToken)
+    }
 
     attachCookiesToResponse({ res, user: tokenUser, refreshToken })
 
     res.status(StatusCodes.OK).json({ user: tokenUser })
-
 }
 
 const logout = async (req, res) => {
