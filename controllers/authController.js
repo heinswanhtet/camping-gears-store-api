@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-const { createTokenUser, attachCookiesToResponse, sendVerificationEmail, sendResetPasswordEmail, createHash } = require('../utils')
+const { createTokenUser, attachCookiesToResponse, sendVerificationEmail, sendResetPasswordEmail, createHash, sendSuccessResetPasswordEmail } = require('../utils')
 const crypto = require('crypto')
 const Token = require('../models/Token')
 
@@ -145,7 +145,15 @@ const resetPassword = async (req, res) => {
             user.password = password
             user.passwordToken = null
             user.passwordTokenExpirationDate = null
+
             await user.save()
+
+            const forwardedHost = req.get('x-forwarded-host')
+            sendSuccessResetPasswordEmail({
+                name: user.name,
+                email: user.email,
+                origin: forwardedHost
+            })
         }
     }
 
