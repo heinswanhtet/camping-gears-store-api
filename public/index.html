@@ -8408,6 +8408,9 @@
                             <li><a class=endpoint_menu href=#jump-Auth-RegisterUser>Register User</a>
                             <li><a class=endpoint_menu href=#jump-Auth-Login>Login</a>
                             <li><a class=endpoint_menu href=#jump-Auth-Logout>Logout</a>
+                            <li><a class=endpoint_menu href=#jump-Auth-VerifyEmail>Verify Email</a>
+                            <li><a class=endpoint_menu href=#jump-Auth-ForgotPassword>Forgot Password</a>
+                            <li><a class=endpoint_menu href=#jump-Auth-ResetPassword>Reset Password</a>
                         </ul>
                     <li><strong><a href=#User>User</a></strong>
                         <ul>
@@ -8450,7 +8453,7 @@
                 <div class="panel panel-default">
                     <div class=panel-heading>
                         <h3 class=panel-title id=Auth>Auth
-                            <span class=badge>3</span>
+                            <span class=badge>6</span>
                         </h3>
                     </div>
                     <div class=panel-body>
@@ -8466,15 +8469,15 @@
                                                     User</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/auth/register
+                                                {{URL}}/auth/register
                                             </h4>
                                         </a>
                                     </div>
                                     <div id=collapse-Auth-RegisterUser class="panel-collapse collapse">
                                         <div class=panel-body>
                                             <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-                                                &#34;name&#34;: &#34;luffy&#34;,
-                                                &#34;email&#34;: &#34;luffy@gmail.com&#34;,
+                                                &#34;name&#34;: &#34;franky&#34;,
+                                                &#34;email&#34;: &#34;franky@gmail.com&#34;,
                                                 &#34;password&#34;: &#34;secret&#34;
                                                 }</span>
                                             <div class=clearfix></div>
@@ -8490,7 +8493,7 @@
                                                 &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/auth/login
+                                                {{URL}}/auth/login
                                             </h4>
                                         </a>
                                     </div>
@@ -8513,11 +8516,82 @@
                                                 &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/auth/logout
+                                                {{URL}}/auth/logout
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Auth-Logout class="panel-collapse collapse">
                                         <div class=panel-body></div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-success" id=jump-Auth-VerifyEmail>
+                                    <div class=panel-heading><small class="pull-right text-muted">raw</small>
+                                        <a class=text-success data-toggle=collapse data-parent=#accordion-Auth
+                                            href=#collapse-Auth-VerifyEmail>
+                                            <h4 class=panel-title><span
+                                                    class="glyphicon glyphicon-plus"></span><strong>Verify
+                                                    Email</strong> &nbsp;|&nbsp;
+                                                <strong class="request-method border-success">POST</strong>
+                                                &nbsp;
+                                                {{URL}}/auth/verify-email
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id=collapse-Auth-VerifyEmail class="panel-collapse collapse">
+                                        <div class=panel-body>
+                                            <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+                                                &#34;verificationToken&#34;:
+                                                &#34;80f1c6a452f7f5b7c361d99764722e505db814622fb5449ac3d8d76803fdf7a3e060707f262980f1&#34;,
+                                                &#34;email&#34;: &#34;franky@gmail.com&#34;
+                                                }</span>
+                                            <div class=clearfix></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-success" id=jump-Auth-ForgotPassword>
+                                    <div class=panel-heading><small class="pull-right text-muted">raw</small>
+                                        <a class=text-success data-toggle=collapse data-parent=#accordion-Auth
+                                            href=#collapse-Auth-ForgotPassword>
+                                            <h4 class=panel-title><span
+                                                    class="glyphicon glyphicon-plus"></span><strong>Forgot
+                                                    Password</strong> &nbsp;|&nbsp;
+                                                <strong class="request-method border-success">POST</strong>
+                                                &nbsp;
+                                                {{URL}}/auth/forgot-password
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id=collapse-Auth-ForgotPassword class="panel-collapse collapse">
+                                        <div class=panel-body>
+                                            <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+                                                &#34;email&#34;: &#34;franky@gmail.com&#34;
+                                                }</span>
+                                            <div class=clearfix></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-success" id=jump-Auth-ResetPassword>
+                                    <div class=panel-heading><small class="pull-right text-muted">raw</small>
+                                        <a class=text-success data-toggle=collapse data-parent=#accordion-Auth
+                                            href=#collapse-Auth-ResetPassword>
+                                            <h4 class=panel-title><span
+                                                    class="glyphicon glyphicon-plus"></span><strong>Reset
+                                                    Password</strong> &nbsp;|&nbsp;
+                                                <strong class="request-method border-success">POST</strong>
+                                                &nbsp;
+                                                {{URL}}/auth/reset-password
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id=collapse-Auth-ResetPassword class="panel-collapse collapse">
+                                        <div class=panel-body>
+                                            <h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+                                                &#34;token&#34;:
+                                                &#34;9321f61ec30d2e30c2095cad807eb6fd2367544301e4e243a36b6933df05842c81c06dc864709d82&#34;,
+                                                &#34;email&#34;: &#34;franky@gmail.com&#34; ,
+                                                &#34;password&#34;: &#34;secret&#34;
+                                                }</span>
+                                            <div class=clearfix></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -8543,7 +8617,7 @@
                                                     Users</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users
+                                                {{URL}}/users
                                             </h4>
                                         </a></div>
                                     <div id=collapse-User-GetAllUsers class="panel-collapse collapse">
@@ -8559,7 +8633,7 @@
                                                     User</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users/6602e0691ec468a2721f5a79
+                                                {{URL}}/users/6602e0691ec468a2721f5a79
                                             </h4>
                                         </a></div>
                                     <div id=collapse-User-GetSingleUser class="panel-collapse collapse">
@@ -8575,7 +8649,7 @@
                                                     User</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users/show-me
+                                                {{URL}}/users/show-me
                                             </h4>
                                         </a></div>
                                     <div id=collapse-User-GetCurrentUser class="panel-collapse collapse">
@@ -8591,7 +8665,7 @@
                                                 &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users/update-user
+                                                {{URL}}/users/update-user
                                             </h4>
                                         </a>
                                     </div>
@@ -8614,7 +8688,7 @@
                                                     Password</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/users/update-user-password
+                                                {{URL}}/users/update-user-password
                                             </h4>
                                         </a>
                                     </div>
@@ -8651,7 +8725,7 @@
                                                     Image</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/upload-image
+                                                {{URL}}/products/upload-image
                                             </h4>
                                         </a>
                                     </div>
@@ -8682,7 +8756,7 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products
+                                                {{URL}}/products
                                             </h4>
                                         </a>
                                     </div>
@@ -8716,7 +8790,7 @@
                                                     Products</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products
+                                                {{URL}}/products
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-GetAllProducts class="panel-collapse collapse">
@@ -8732,7 +8806,7 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683
+                                                {{URL}}/products/66062cccb48fe9ce2731c683
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-GetSingleProduct class="panel-collapse collapse">
@@ -8748,7 +8822,7 @@
                                                     Reviews</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683/reviews
+                                                {{URL}}/products/66062cccb48fe9ce2731c683/reviews
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-GetSingleProductReviews class="panel-collapse collapse">
@@ -8764,7 +8838,7 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683
+                                                {{URL}}/products/66062cccb48fe9ce2731c683
                                             </h4>
                                         </a>
                                     </div>
@@ -8787,7 +8861,7 @@
                                                     Product</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-danger">DELETE</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/products/66067479f8139319cb0f9497
+                                                {{URL}}/products/66067479f8139319cb0f9497
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Product-DeleteProduct class="panel-collapse collapse">
@@ -8817,7 +8891,7 @@
                                                     Review</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews
+                                                {{URL}}/reviews
                                             </h4>
                                         </a>
                                     </div>
@@ -8842,7 +8916,7 @@
                                                     Reviews</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews
+                                                {{URL}}/reviews
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Review-GetAllReviews class="panel-collapse collapse">
@@ -8858,7 +8932,7 @@
                                                     Review</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews/66067e51747dcbe71e9b7a3a
+                                                {{URL}}/reviews/66067e51747dcbe71e9b7a3a
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Review-GetSingleReview class="panel-collapse collapse">
@@ -8874,7 +8948,7 @@
                                                     Review</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews/66067cee9a4be3d44dcc9d9e
+                                                {{URL}}/reviews/66067cee9a4be3d44dcc9d9e
                                             </h4>
                                         </a>
                                     </div>
@@ -8898,7 +8972,7 @@
                                                     Review</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-danger">DELETE</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/reviews/66067cee9a4be3d44dcc9d9e
+                                                {{URL}}/reviews/66067cee9a4be3d44dcc9d9e
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Review-DeleteReview class="panel-collapse collapse">
@@ -8928,7 +9002,7 @@
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-success">POST</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders
+                                                {{URL}}/orders
                                             </h4>
                                         </a>
                                     </div>
@@ -8959,7 +9033,7 @@
                                                     Orders</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders
+                                                {{URL}}/orders
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Order-GetAllOrders class="panel-collapse collapse">
@@ -8975,7 +9049,7 @@
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders/6607d1a23d1fd3336cb032c4
+                                                {{URL}}/orders/6607d1a23d1fd3336cb032c4
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Order-GetSingleOrder class="panel-collapse collapse">
@@ -8991,7 +9065,7 @@
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-info">GET</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders/show-all-my-orders
+                                                {{URL}}/orders/show-all-my-orders
                                             </h4>
                                         </a></div>
                                     <div id=collapse-Order-GetCurrentUserOrder class="panel-collapse collapse">
@@ -9007,7 +9081,7 @@
                                                     Order</strong> &nbsp;|&nbsp;
                                                 <strong class="request-method border-warning">PATCH</strong>
                                                 &nbsp;
-                                                https://camping-gears-store-api.onrender.com/api/v1/orders/cancel/6608f6822384c8ce6288cae1
+                                                {{URL}}/orders/cancel/6608f6822384c8ce6288cae1
                                             </h4>
                                         </a>
                                     </div>
@@ -9027,7 +9101,7 @@
         <div class=container-fluid>
             <div class="span12 text-center"><span data-toggle=tooltip
                     title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated
-                    at 2024-03-31 13:03:31 by <a href=https://github.com/thedevsaddam/docgen target=_blank
+                    at 2024-04-02 11:47:51 by <a href=https://github.com/thedevsaddam/docgen target=_blank
                         class=text-muted>docgen</a></span></div>
         </div>
     </footer>

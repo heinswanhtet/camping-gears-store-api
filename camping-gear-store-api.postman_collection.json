@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"luffy\",\n    \"email\": \"luffy@gmail.com\",\n    \"password\": \"secret\"\n}",
+							"raw": "{\n    \"name\": \"franky\",\n    \"email\": \"franky@gmail.com\",\n    \"password\": \"secret\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,9 +24,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/auth/register",
+							"raw": "{{URL}}/auth/register",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"auth",
@@ -51,9 +51,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/auth/login",
+							"raw": "{{URL}}/auth/login",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"auth",
@@ -69,13 +69,94 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/auth/logout",
+							"raw": "{{URL}}/auth/logout",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"auth",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"verificationToken\": \"80f1c6a452f7f5b7c361d99764722e505db814622fb5449ac3d8d76803fdf7a3e060707f262980f1\",\n    \"email\": \"franky@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verify-email",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"franky@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forgot-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"9321f61ec30d2e30c2095cad807eb6fd2367544301e4e243a36b6933df05842c81c06dc864709d82\",\n    \"email\": \"franky@gmail.com\" ,\n    \"password\": \"secret\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/reset-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
 							]
 						}
 					},
@@ -92,9 +173,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/users",
+							"raw": "{{URL}}/users",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"users"
@@ -109,9 +190,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/users/6602e0691ec468a2721f5a79",
+							"raw": "{{URL}}/users/6602e0691ec468a2721f5a79",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"users",
@@ -127,9 +208,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/users/show-me",
+							"raw": "{{URL}}/users/show-me",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"users",
@@ -154,9 +235,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/users/update-user",
+							"raw": "{{URL}}/users/update-user",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"users",
@@ -181,9 +262,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/users/update-user-password",
+							"raw": "{{URL}}/users/update-user-password",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"users",
@@ -224,9 +305,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products/upload-image",
+							"raw": "{{URL}}/products/upload-image",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products",
@@ -251,9 +332,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products",
+							"raw": "{{URL}}/products",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products"
@@ -268,9 +349,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products",
+							"raw": "{{URL}}/products",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products"
@@ -285,9 +366,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683",
+							"raw": "{{URL}}/products/66062cccb48fe9ce2731c683",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products",
@@ -303,9 +384,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683/reviews",
+							"raw": "{{URL}}/products/66062cccb48fe9ce2731c683/reviews",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products",
@@ -331,9 +412,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products/66062cccb48fe9ce2731c683",
+							"raw": "{{URL}}/products/66062cccb48fe9ce2731c683",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products",
@@ -349,9 +430,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/products/66067479f8139319cb0f9497",
+							"raw": "{{URL}}/products/66067479f8139319cb0f9497",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"products",
@@ -381,9 +462,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/reviews",
+							"raw": "{{URL}}/reviews",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"reviews"
@@ -398,9 +479,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/reviews",
+							"raw": "{{URL}}/reviews",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"reviews"
@@ -415,9 +496,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/reviews/66067e51747dcbe71e9b7a3a",
+							"raw": "{{URL}}/reviews/66067e51747dcbe71e9b7a3a",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"reviews",
@@ -442,9 +523,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/reviews/66067cee9a4be3d44dcc9d9e",
+							"raw": "{{URL}}/reviews/66067cee9a4be3d44dcc9d9e",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"reviews",
@@ -460,9 +541,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/reviews/66067cee9a4be3d44dcc9d9e",
+							"raw": "{{URL}}/reviews/66067cee9a4be3d44dcc9d9e",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"reviews",
@@ -492,9 +573,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/orders",
+							"raw": "{{URL}}/orders",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"orders"
@@ -509,9 +590,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/orders",
+							"raw": "{{URL}}/orders",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"orders"
@@ -526,9 +607,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/orders/6607d1a23d1fd3336cb032c4",
+							"raw": "{{URL}}/orders/6607d1a23d1fd3336cb032c4",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"orders",
@@ -544,9 +625,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/orders/show-all-my-orders",
+							"raw": "{{URL}}/orders/show-all-my-orders",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"orders",
@@ -571,9 +652,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://camping-gears-store-api.onrender.com/api/v1/orders/cancel/6608f6822384c8ce6288cae1",
+							"raw": "{{URL}}/orders/cancel/6608f6822384c8ce6288cae1",
 							"host": [
-								"https://camping-gears-store-api.onrender.com/api/v1"
+								"{{URL}}"
 							],
 							"path": [
 								"orders",
