@@ -132,7 +132,24 @@ const forgotPassword = async (req, res) => {
 }
 
 const resetPassword = async (req, res) => {
-    res.send('rest password')
+    const { token, email, password } = req.body
+    if (!token || !email || !password)
+        throw new CustomError.BadRequestError('Please provide all required values')
+
+    const user = await User.findOne({ email })
+
+    if (user) {
+        const currentDate = new Date()
+
+        if (user.passwordToken === createHash(token) && user.passwordTokenExpirationDate > currentDate) {
+            user.password = password
+            user.passwordToken = null
+            user.passwordTokenExpirationDate = null
+            await user.save()
+        }
+    }
+
+    res.status(StatusCodes.OK).json({ msg: 'reset password' })
 }
 
 module.exports = {
