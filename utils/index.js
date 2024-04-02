@@ -12,5 +12,6 @@ module.exports = {
     createTokenUser,
     checkPermissions,
     sendInvoiceEmail,
+    sendVerificationEmail,
     sendResetPasswordEmail
 }
